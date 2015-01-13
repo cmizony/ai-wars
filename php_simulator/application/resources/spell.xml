@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spells>
+	<spell>
+		<id>100</id>
+		<codename>LASER_SHOT</codename>
+		<energy>100</energy>
+		<cooldown>1</cooldown>
+		<cast>1</cast>
+		<power>75</power>
+		<type>offensive</type>
+		<effect>%power damage</effect>
+	</spell>
+	<spell>
+		<id>101</id>
+		<codename>OFFENSIVE_BOTS</codename>
+		<energy>150</energy>
+		<cooldown>4</cooldown>
+		<cast>0</cast>
+		<power>50</power>
+		<duration>6</duration>
+		<type>offensive</type>
+		<effect>%power damage each turn for %duration turns</effect>
+	</spell>
+	<spell>
+		<id>102</id>
+		<codename>ENERGY_OVERLOAD</codename>
+		<energy>300</energy>
+		<cooldown>3</cooldown>
+		<cast>2</cast>
+		<power>225</power>
+		<type>offensive</type>
+		<effect>%power damage in %cast turns</effect>
+	</spell>
+	<spell>
+		<id>103</id>
+		<codename>EXPLOSIVE_DEVICE</codename>
+		<energy>100</energy>
+		<cooldown>0</cooldown>
+		<cast>1</cast>
+		<power>50</power>
+		<duration>3</duration>
+		<type>offensive</type>
+		<effect>%power damage, and for %duration turns provide %power extra energy when you use this spell again</effect>
+	</spell>
+	<spell>
+		<id>104</id>
+		<codename>OFFENSIVE_SYSTEM_UPGRADE</codename>
+		<energy>200</energy>
+		<cooldown>5</cooldown>
+		<cast>1</cast>
+		<power>10</power>
+		<duration>3</duration>
+		<type>offensive</type>
+		<effect>increase damage delivered by %power percent for %duration turns</effect>
+	</spell>
+	<spell>
+		<id>105</id>
+		<codename>OFFENSIVE_SYSTEM_VIRUS</codename>
+		<energy>200</energy>
+		<cooldown>5</cooldown>
+		<cast>1</cast>
+		<power>10</power>
+		<duration>2</duration>
+		<type>offensive</type>
+		<effect>increase damage received by %power percent for %duration turns</effect>
+	</spell>
+
+
+
+	<spell>
+		<id>200</id>
+		<codename>REPARING</codename>
+		<energy>60</energy>
+		<cooldown>1</cooldown>
+		<cast>1</cast>
+		<power>40</power>
+		<type>defensive</type>
+		<effect>%power health</effect>
+	</spell>
+	<spell>
+		<id>201</id>
+		<codename>REPARING_BOTS</codename>
+		<energy>90</energy>
+		<cooldown>4</cooldown>
+		<cast>1</cast>
+		<power>120</power>
+		<duration>6</duration>
+		<type>defensive</type>
+		<effect>%power health each turn for %duration turns</effect>
+	</spell>
+	<spell>
+		<id>202</id>
+		<codename>SPARE_PARTS</codename>
+		<energy>360</energy>
+		<cooldown>3</cooldown>
+		<cast>2</cast>
+		<power>180</power>
+		<type>defensive</type>
+		<effect>%power health in %cast turns</effect>
+	</spell>
+	<spell>
+		<id>203</id>
+		<codename>MOBILE_REPAIR_ROBOT</codename>
+		<energy>60</energy>
+		<cooldown>0</cooldown>
+		<cast>1</cast>
+		<power>20</power>
+		<duration>3</duration>
+		<type>defensive</type>
+		<effect>%power health and for %duration turns provide %power extra energy when you use this spell again</effect>
+	</spell>
+	<spell>
+		<id>204</id>
+		<codename>DEFENSIVE_SYSTEM_UPGRADE</codename>
+		<energy>300</energy>
+		<cooldown>5</cooldown>
+		<cast>2</cast>
+		<power>10</power>
+		<duration>4</duration>
+		<type>defensive</type>
+		<effect>reduce damage received by %power % for %duration turns</effect>
+	</spell>
+	<spell>
+		<id>205</id>
+		<codename>DEFENSIVE_SYSTEM_VIRUS</codename>
+		<energy>300</energy>
+		<cooldown>5</cooldown>
+		<cast>2</cast>
+		<power>10</power>
+		<duration>4</duration>
+		<type>defensive</type>
+		<effect>reduce damage delivered by %power % for %duration turns</effect>
+	</spell>
+
+
+
+	<spell>
+		<id>300</id>
+		<codename>ELECTROMAGNETIC_SHOCK</codename>
+		<energy>200</energy>
+		<cooldown>7</cooldown>
+		<cast>0</cast>
+		<type>neutral</type>
+		<effect>interrupt all casts from the target</effect>
+	</spell>
+	<spell>
+		<id>301</id>
+		<codename>ELECTROMAGNETIC_BLAST</codename>
+		<energy>400</energy>
+		<cooldown>10</cooldown>
+		<cast>0</cast>
+		<duration>2</duration>
+		<type>neutral</type>
+		<effect>stun the target for %duration turns</effect>
+	</spell>
+	<spell>
+		<id>302</id>
+		<codename>OFFENSIVE_ION_SHOCK</codename>
+		<energy>120</energy>
+		<cooldown>0</cooldown>
+		<cast>1</cast>
+		<type>neutral</type>
+		<effect>remove one buff from the target</effect>
+	</spell>
+	<spell>
+		<id>303</id>
+		<codename>BATTERY_RECHARGE</codename>
+		<energy>100</energy>
+		<cooldown>10</cooldown>	
+		<cast>1</cast>
+		<power>100</power>
+		<duration>3</duration>
+		<type>neutral</type>
+		<effect>regain %power energy per turn for %duration turns</effect>
+	</spell>
+	<spell>
+		<id>304</id>
+		<codename>ENERGETIC_SHIELD</codename>
+		<energy>400</energy>
+		<cooldown>30</cooldown>
+		<cast>0</cast>
+		<duration>1</duration>
+		<type>neutral</type>
+		<effect>block all damage for %duration turns</effect>
+	</spell>
+	<spell>
+		<id>305</id>
+		<codename>DEFENSIVE_ION_SHOCK</codename>
+		<energy>120</energy>
+		<cooldown>0</cooldown>
+		<cast>1</cast>
+		<type>neutral</type>
+		<effect>remove one debuff from the target</effect>
+	</spell>
+</spells>
+
