@@ -1,22 +1,53 @@
 <?php
+/**
+ * AI_player.php file
+ *
+ */
 
 require_once('AI_game_content.php');
 
+/**
+ * Maximum life for a player in game
+ */
 define('PLAYER_MAX_LIFE',1000);
+
+/**
+ * Maximum energy for a player in game
+ */
 define('PLAYER_MAX_ENERGY',1000);
 
+/**
+ * Class that represent a player in game
+ *
+ * @author Camille Mizony
+ * @see AI_Effect
+ */
 class AI_player extends AI_Game_content
 {
-	public $id;		// int
-	public $life;	// int
-	public $energy;	// int
-	public $team;	// int
+	
+	/** @var int $id Represent player_id in game*/
+	public $id;		
+	/** @var int $life player life from 0 to PLAYER_MAX_LIFE */
+	public $life;
+	/** @var int $energy player energy from 0 to PLAYER_MAX_ENERGY */
+	public $energy;	
+	/** @var int $team Represent player_team in game */
+	public $team;
 
-	public $cast_bar;	//Array of Effect
-	public $buffs;		// Array of Effect
-	public $debuffs;	// Array of Effect
-	public $cooldowns;	// Array of effect
+	/** @var object[] $cast_bar An array of AI_Effect */
+	public $cast_bar;
+	/** @var object[] $buffs An array of AI_Effect */
+	public $buffs;	
+	/** @var object[] $debuffs An array of AI_Effect */
+	public $debuffs;
+	/** @var object[] $cooldowns An array of AI_Effect */
+	public $cooldowns;
 
+	/**
+	 * Constructor, init variables to empty/default values
+	 *
+	 * @return void
+	 */
 	public function __construct()
 	{
 		parent::__construct();
@@ -29,6 +60,11 @@ class AI_player extends AI_Game_content
 		$this->id=NULL;
 	}
 
+	/**
+	 * Convert Player to json format
+	 *
+	 * @return string json 
+	 */
 	public function to_json()
 	{
 		$json="{
@@ -66,6 +102,11 @@ class AI_player extends AI_Game_content
 		return $json;
 	}
 
+	/**
+	 * Convert Player to string log format
+	 *
+	 * @return striing Player converted as log format
+	 */
 	public function __toString()
 	{
 		$str="P $this->id $this->team $this->life $this->energy ";
@@ -98,6 +139,11 @@ class AI_player extends AI_Game_content
 	}
 
 
+	/**
+	 * Clone Player
+	 *
+	 * @return void
+	 */
 	public function __clone()
 	{
 		$new=array();

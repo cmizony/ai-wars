@@ -23,7 +23,6 @@ class AI_Game_content
 		usort($array,array( __CLASS__,'sorter'));
 	}
 
-	// TODO Binary search algorithm
 	public static function search_by_property(&$array,$property,$value)
 	{
 		self::$find_key=$property;
