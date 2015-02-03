@@ -1,6 +1,6 @@
 ## AI SIMULATOR
 
-	VERSION 0.0.1
+[![Build Status](https://travis-ci.org/cmizony/ai_wars.svg)](https://travis-ci.org/cmizony/ai_wars)
 
 Simulation fight between 2 Artificial Intelligence
 
