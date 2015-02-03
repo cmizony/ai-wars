@@ -1,8 +1,6 @@
 ## AI SIMULATOR
 
-[![Build Status](https://travis-ci.org/cmizony/ai_wars.svg)](https://travis-ci.org/cmizony/ai_wars)
-
-Simulation fight between 2 Artificial Intelligence
+Simulate fight between 2 Artificial Intelligence
 
 ## CONTENT
 
@@ -14,8 +12,8 @@ Simulation fight between 2 Artificial Intelligence
 
 ## USAGE
 
-Edit the config.ini and specifiy the 2 AIs you want to be executed and others
-options like the number of turns max for the game.
+Edit the **config.ini** and specifiy the 2 AIs you want to be executed and
+others options like the number of turns max for the game.
 
-Run **php main.php** and get the json result of your fight.
-Play with the **quiet** mode in the configuration to get debug informations
+Run **php main.php** and get the json result of your fight.  Play with the
+**quiet** mode in the configuration to get debug informations
