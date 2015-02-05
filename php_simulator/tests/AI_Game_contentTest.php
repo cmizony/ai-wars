@@ -1,6 +1,6 @@
 <?php 
 
-require_once 'application/AI_game_content.php';
+require_once 'php_simulator/application/AI_game_content.php';
 
 class AI_game_contentTest extends PHPUnit_Framework_TestCase
 {
