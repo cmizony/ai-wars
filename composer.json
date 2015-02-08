@@ -1,5 +1,8 @@
 {
 	"require-dev": {
 		"satooshi/php-coveralls": "dev-master"
+	},
+	"autoload": {
+		"classmap": ["php_simulator/src"]
 	}
 }
