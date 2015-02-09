@@ -1,7 +1,6 @@
 <?php
-
-require_once('AI_game_content.php');
-require_once('AI_spell.php');
+namespace AI_wars;
+use Exception;
 
 // Effect is like an event
 // TODO split into multiple class

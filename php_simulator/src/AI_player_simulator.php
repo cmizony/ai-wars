@@ -1,6 +1,6 @@
 <?php
-
-require_once('AI_player.php');
+namespace AI_wars;
+use Exception;
 
 define('PLAYER_TURN_ENERGY',100);
 

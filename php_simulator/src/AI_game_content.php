@@ -1,4 +1,5 @@
 <?php
+namespace AI_wars;
 
 class AI_Game_content
 {

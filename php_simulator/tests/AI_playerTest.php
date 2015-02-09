@@ -4,7 +4,7 @@ class AI_playerTest extends PHPUnit_Framework_TestCase
 {
 	public function testConstruct ()
 	{
-		$player = new AI_player ();
+		$player = new AI_wars\AI_player ();
 
 		$this->assertEmpty($player->id);
 		$this->assertEmpty($player->team);
@@ -30,7 +30,7 @@ class AI_playerTest extends PHPUnit_Framework_TestCase
 			->method('to_json')
 			->will($this->returnValue(json_encode($mock_json)));
 
-		$player = new AI_player ();
+		$player = new AI_wars\AI_player ();
 		$player->id = 1;
 		$player->team = 2;
 		$player->energy = 100;
@@ -59,7 +59,7 @@ class AI_playerTest extends PHPUnit_Framework_TestCase
 		$effect = $this->getMockBuilder('AI_effect')->getMock();
 		$effect->duration = 5;
 
-		$player = new AI_player ();
+		$player = new AI_wars\AI_player ();
 		$player->id = 1;
 		$player->team = 2;
 		$player->energy = 100;
@@ -79,7 +79,7 @@ class AI_playerTest extends PHPUnit_Framework_TestCase
 		$effect = $this->getMockBuilder('AI_effect')->getMock();
 		$effect->duration = 5;
 
-		$player_model = new AI_player();
+		$player_model = new AI_wars\AI_player();
 		$player_model->id = 1;
 		$player_model->team = 2;
 		$player_model->energy = 100;

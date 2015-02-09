@@ -1,9 +1,6 @@
 <?php
-
-require_once('AI_effect.php');
-require_once('AI_player_simulator.php');
-require_once('AI_spells_simulator.php');
-require_once('AI_game_history.php');
+namespace AI_wars;
+use Exception;
 
 define ('VERSION','0.1');
 define ('REGEX_CAST','/^C [0-9]* [0-9]* [0-9]*$/');

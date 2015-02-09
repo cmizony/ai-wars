@@ -1,6 +1,5 @@
 <?php
-
-require_once('AI_game_content.php');
+namespace AI_wars;
 
 define('LASER_SHOT'					,100);
 define('OFFENSIVE_BOTS'				,101);

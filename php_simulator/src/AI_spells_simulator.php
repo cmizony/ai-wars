@@ -1,6 +1,7 @@
 <?php
-
-require_once('AI_spell.php');
+namespace AI_wars;
+use Exception;
+use DOMDocument;
 
 define ('SPELL_XML_FILE','spell.xml');
 define ('SPELL_XSD_FILE','spell.xsd');

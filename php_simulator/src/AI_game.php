@@ -1,7 +1,5 @@
 <?php
-
-require_once('AI_player.php');
-require_once('AI_spell.php');
+namespace AI_wars;
 
 define('REGEX_TURN_NUMBER','/^T [0-9]*$/');
 define('SUB_REGEX_EFFECT','(\([0-9]*;[0-9]*\) ?)');

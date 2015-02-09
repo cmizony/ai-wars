@@ -1,4 +1,5 @@
 <?php
+namespace AI_wars;
 
 /* Supposition on turn numbers :
  * Linear continuous distribution in N [0,n]

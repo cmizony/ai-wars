@@ -4,8 +4,8 @@ class AI_game_contentTest extends PHPUnit_Framework_TestCase
 {
 	public function testSorter ()
 	{
-		$game_content = new AI_Game_content();
-		AI_Game_content::$sort_key = "value";
+		$game_content = new AI_wars\AI_Game_content();
+		AI_wars\AI_Game_content::$sort_key = "value";
 
 		$element_a = (object) array ("value" => 2);
 		$element_b = (object) array ("value" => 5);
@@ -18,7 +18,7 @@ class AI_game_contentTest extends PHPUnit_Framework_TestCase
 
 	public function testSort_by_property ()
 	{
-		$game_content = new AI_Game_content();
+		$game_content = new AI_wars\AI_Game_content();
 
 		$input = array (
 			(object) array ("value" => 5),
@@ -43,7 +43,7 @@ class AI_game_contentTest extends PHPUnit_Framework_TestCase
 
 	public function testSearch_by_property ()
 	{
-		$game_content = new AI_Game_content();
+		$game_content = new AI_wars\AI_Game_content();
 
 		$input = array (
 			(object) array ("value" => 5),

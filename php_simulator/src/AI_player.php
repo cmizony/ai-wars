@@ -1,10 +1,10 @@
 <?php
+namespace AI_wars;
 /**
  * AI_player.php file
  *
  */
 
-require_once('AI_game_content.php');
 
 /**
  * Maximum life for a player in game
