@@ -4,5 +4,8 @@
 	},
 	"autoload": {
 		"classmap": ["php_simulator/src"]
+	},
+	"config": {
+		"vendor-dir":"php_simulator/vendor"
 	}
 }
