@@ -3,9 +3,7 @@
 		"satooshi/php-coveralls": "dev-master"
 	},
 	"autoload": {
-		"psr-4": {
-			"AI_wars\\" : "php_simulator/src"
-		}
+		"classmap": ["php_simulator/src"]
 	},
 	"config": {
 		"vendor-dir":"php_simulator/vendor"
