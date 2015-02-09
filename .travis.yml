@@ -6,8 +6,8 @@ php:
 - hhvm
 
 install:
-- curl -s http://getcomposer.org/installer | php
 - php composer.phar install --dev --no-interaction
+- php composer.phar dump-autoload
 
 before_script:
 - mkdir -p build/logs
