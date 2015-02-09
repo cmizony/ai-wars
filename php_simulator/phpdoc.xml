@@ -7,6 +7,6 @@
 		<target>doc/</target>
 	</transformer>
 	<files>
-		<directory>application</directory>
+		<directory>src</directory>
 	</files>
 </phpdoc>
