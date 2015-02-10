@@ -1,0 +1,7 @@
+.game-viewer .player .life,
+.game-viewer .player .energy {
+  margin-bottom: 5px;
+}
+.game-viewer .player .effect {
+  cursor: help;
+}
