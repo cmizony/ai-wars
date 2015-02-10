@@ -3,8 +3,8 @@
 /****************************/
 if (typeof PLAYER_MAX_LIFE == 'undefined')
 {
-	const PLAYER_MAX_LIFE=1000;
-	const PLAYER_MAX_ENERGY=1000;
+	const PLAYER_MAX_LIFE=100;
+	const PLAYER_MAX_ENERGY=100;
 }
 
 /****************************/
@@ -133,6 +133,10 @@ function loadGame (json_game,dom_game_viewer,players_info)
 		dom_turn.appendChild(dom_player);
 	}
 
+	//Remove previous content
+	dom_game_viewer.innerHTML = "";
+
+	//Add new viewer
 	dom_game_viewer.appendChild(dom_turn);
 	dom_game_viewer.appendChild(dom_panel);
 
@@ -256,7 +260,7 @@ function updateBuffEffects (game_viewer,dom_node,effects)
 		dom_effect.appendChild(dom_spell);
 
 		dom_effect.className='effect badge badge-info';
-		dom_effect.innerHTML+=' '+game_viewer.static.spells[effect.spell_id].codename.toLowerCase().replace('_',' ')+
+		dom_effect.innerHTML+=' '+game_viewer.static.spells[effect.spell_id].name.toLowerCase().replace('_',' ')+
 			' '+effect.duration;
 
 		dom_effect.setAttribute('data-toggle','tooltip');
@@ -283,7 +287,7 @@ function updateDebuffEffects (game_viewer,dom_node,effects)
 		dom_effect.appendChild(dom_spell);
 
 		dom_effect.className='effect badge badge-important';
-		dom_effect.innerHTML+=' '+game_viewer.static.spells[effect.spell_id].codename.toLowerCase().replace('_',' ')+
+		dom_effect.innerHTML+=' '+game_viewer.static.spells[effect.spell_id].name.toLowerCase().replace('_',' ')+
 			' '+effect.duration;
 
 		dom_effect.setAttribute('data-toggle','tooltip');
@@ -310,7 +314,7 @@ function updateCooldownEffects (game_viewer,dom_node,effects)
 		dom_effect.appendChild(dom_spell);
 
 		dom_effect.className='effect badge';
-		dom_effect.innerHTML+=' '+game_viewer.static.spells[effect.spell_id].codename.toLowerCase().replace('_',' ')+
+		dom_effect.innerHTML+=' '+game_viewer.static.spells[effect.spell_id].name.toLowerCase().replace('_',' ')+
 			' '+effect.duration;
 
 		dom_effect.setAttribute('data-toggle','tooltip');
@@ -337,7 +341,7 @@ function updateCastbar(game_viewer,dom_node,cast_bar)
 		dom_effect.appendChild(dom_spell);
 
 		dom_effect.className='effect badge badge-warning';
-		dom_effect.innerHTML+=' '+game_viewer.static.spells[effect.spell_id].codename.toLowerCase().replace('_',' ')+
+		dom_effect.innerHTML+=' '+game_viewer.static.spells[effect.spell_id].name.toLowerCase().replace('_',' ')+
 			' '+effect.duration;
 
 		dom_effect.setAttribute('data-toggle','tooltip');
