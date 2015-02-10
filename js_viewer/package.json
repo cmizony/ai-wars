@@ -1,0 +1,8 @@
+{
+	"name": "AI_Wars-viewer",
+	"description": "A package that render AI_wars games",
+	"devDependencies": {
+		"less": "~2.2.0",
+		"bower": "~1.3.12"
+	}
+}
