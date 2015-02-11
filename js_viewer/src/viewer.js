@@ -102,13 +102,13 @@ function loadGame (json_game,dom_game_viewer,players_info)
 			players_info[i].name;
 
 		dom_life.className='progress life';
-		dom_life_bar.className='bar bar-success';
+		dom_life_bar.className='progress-bar progress-bar-success';
 		dom_life_bar.setAttribute('style','width: '+(player.life*100/PLAYER_MAX_LIFE)+'%');
 		dom_life_bar.innerHTML = player.life+'/'+PLAYER_MAX_LIFE;
 		dom_life.appendChild(dom_life_bar);
 
 		dom_energy.className='progress energy';
-		dom_energy_bar.className='bar';
+		dom_energy_bar.className='progress-bar';
 		dom_energy_bar.setAttribute('style','width: '+(player.energy*100/PLAYER_MAX_ENERGY)+'%');
 		dom_energy_bar.innerHTML = player.energy+'/'+PLAYER_MAX_ENERGY;
 		dom_energy.appendChild(dom_energy_bar);
@@ -153,9 +153,6 @@ function loadJsonFile(event,dom_game_viewer)
 
 	if (file.length === 0)
 		alert('Error, empty file');
-
-	if (!file.type.match('application/json')) 
-		alert('Error, not json file');
 
 	var reader = new FileReader();
 
@@ -219,11 +216,11 @@ function updateGameState (game_viewer,players)
 				dom_life_bar.setAttribute('style','width: '+(player.life*100/PLAYER_MAX_LIFE)+'%');
 
 				if (player.life < PLAYER_MAX_ENERGY*0.4)
-					dom_life_bar.className='bar bar-warning';
+					dom_life_bar.className='progress-bar progress-bar-warning';
 				if (player.life < PLAYER_MAX_ENERGY*0.15)
-					dom_life_bar.className='bar bar-danger';
+					dom_life_bar.className='progress-bar progress-bar-danger';
 				if (player.life > PLAYER_MAX_ENERGY*0.4)
-					dom_life_bar.className='bar bar-success';
+					dom_life_bar.className='progress-bar progress-bar-success';
 			}
 			else if (class_name.indexOf('energy') != -1)
 			{
@@ -256,7 +253,7 @@ function updateBuffEffects (game_viewer,dom_node,effects)
 		var dom_effect = document.createElement('span');
 
 		var dom_spell = document.createElement('i');
-		dom_spell.className='icon-chevron-up icon-white';
+		dom_spell.className='glyphicon glyphicon-chevron-up icon-white';
 		dom_effect.appendChild(dom_spell);
 
 		dom_effect.className='effect badge badge-info';
@@ -283,7 +280,7 @@ function updateDebuffEffects (game_viewer,dom_node,effects)
 		var dom_effect = document.createElement('span');
 
 		var dom_spell = document.createElement('i');
-		dom_spell.className='icon-chevron-down icon-white';
+		dom_spell.className='glyphicon glyphicon-chevron-down icon-white';
 		dom_effect.appendChild(dom_spell);
 
 		dom_effect.className='effect badge badge-important';
@@ -310,7 +307,7 @@ function updateCooldownEffects (game_viewer,dom_node,effects)
 		var dom_effect = document.createElement('span');
 
 		var dom_spell = document.createElement('i');
-		dom_spell.className='icon-time icon-white';
+		dom_spell.className='glyphicon glyphicon-time icon-white';
 		dom_effect.appendChild(dom_spell);
 
 		dom_effect.className='effect badge';
@@ -337,7 +334,7 @@ function updateCastbar(game_viewer,dom_node,cast_bar)
 		var dom_effect = document.createElement('span');
 
 		var dom_spell = document.createElement('i');
-		dom_spell.className='icon-repeat icon-white';
+		dom_spell.className='glyphicon glyphicon-repeat icon-white';
 		dom_effect.appendChild(dom_spell);
 
 		dom_effect.className='effect badge badge-warning';
