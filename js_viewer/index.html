@@ -8,29 +8,30 @@
 
 <div class="container">
 
-	<div class="file">
-		<input type="file" id="uploadJson" name="file" />
-	</div>
+	<div class="panel panel-primary">
 
-	<!-- This is the div id update by the js viewer library -->
-	<div class="game-viewer" id="game-viewer">
+		<div class="panel-heading">	AI_wars - Game Viewer</div>
+
+		<div class="panel-body">
+			<div class="file">
+				<input type="file" id="uploadJson" name="file" />
+			</div>
+
+			<hr>
+
+			<!-- This is the div id update by the js viewer library -->
+			<div class="game-viewer" id="game-viewer">
+			</div>
+		</div>
+
 	</div>
 
 </div>
 
 <script type="text/javascript" >
 
-document.getElementById('uploadJson').addEventListener(
-		'change',
-		function (e) {
-			loadJsonFile(
-				e,
-				document.getElementById('game-viewer'));
-			},
+	document.getElementById('uploadJson').addEventListener('change',
+			function (e) {loadJsonFile(e,	document.getElementById('game-viewer'));},
 			false);
-
-	$(document).ready(function() {
-		$("[data-toggle='tooltip']").tooltip();
-	});
 
 </script>
