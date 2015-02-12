@@ -18,7 +18,7 @@ class AI_Effect extends AI_Game_content
 		parent::__construct();
 		$this->p_target=NULL;
 		$this->p_source=NULL;
-		$this->date=microtime(TRUE)*1000;
+		$this->date=time();
 		$this->spell=$spell;
 		$this->duration=$spell->duration;
 		$this->power=$spell->power;
