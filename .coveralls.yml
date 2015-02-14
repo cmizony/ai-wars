@@ -1,2 +1,2 @@
-src_dir: php_simulator/src
+src_dir: src
 coverage_clover: build/logs/clover.xml
