@@ -22,7 +22,7 @@ class AI_Game_simulator
 	private $bots_config;		// Array of String
 	private $turn;				// int
 	private $players;			// Array of AI_Player_simulator
-	private $spells_simulator;	// AI_Spell_simulator
+	private $spells_validator;	// AI_Spells_validator
 
 	private $game_history;
 	private $quiet;
@@ -30,7 +30,7 @@ class AI_Game_simulator
 	public function __construct()
 	{
 		$this->players=array();
-		$this->spells_simulator=new AI_Spells_simulator();
+		$this->spells_validator=new AI_Spells_validator();
 		$this->game_history=new AI_Game_history();
 	}
 
@@ -39,7 +39,7 @@ class AI_Game_simulator
 		$this->turn=0;
 		$this->players=array();
 		$this->history=array();
-		$this->spells_simulator->initialize($this->simulator_config);
+		$this->spells_validator->initialize($this->simulator_config);
 		$this->game_history->reset();
 	}
 
@@ -326,7 +326,7 @@ class AI_Game_simulator
 				}
 
 				// Cast succed & save into game history
-				$spell=$this->spells_simulator->valid_spell($player,$spell_id);
+				$spell=$this->spells_validator->valid_spell($player,$spell_id);
 				if ($spell)
 				{
 					$effect=$player->cast_spell($spell,$p_target);
@@ -398,7 +398,7 @@ class AI_Game_simulator
 			{
 			\"version\": ".VERSION.",
 			\"static\":";	
-		$json.=$this->spells_simulator->to_json();
+		$json.=$this->spells_validator->to_json();
 		$json .=",
 			\"turns\":
 			[";

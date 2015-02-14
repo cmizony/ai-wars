@@ -6,7 +6,7 @@ use DOMDocument;
 define ('SPELL_XML_FILE','spell.xml');
 define ('SPELL_XSD_FILE','spell.xsd');
 
-class AI_Spells_simulator
+class AI_Spells_validator
 {
 	private $spells;	// Array of Spell
 
