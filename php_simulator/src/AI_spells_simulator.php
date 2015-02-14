@@ -49,9 +49,6 @@ class AI_Spells_simulator
 			$spell->power=		(int)	$xml_spell->power;
 			$spell->duration=	(int)	$xml_spell->duration;
 
-			if(!$spell->valid_version())
-				throw new Exception("Spell $spell->id is not available in the current simulator version");
-
 			array_push($this->spells,$spell);
 		}
 	}
