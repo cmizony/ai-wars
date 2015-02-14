@@ -1,29 +1,29 @@
 <?php
 namespace AI_wars;
 
-define('LASER_SHOT'					,100);
-define('OFFENSIVE_BOTS'				,101);
-define('ENERGY_OVERLOAD'			,102);
-define('EXPLOSIVE_DEVICE'			,103);
-define('OFFENSIVE_SYSTEM_UPGRADE'	,104);
-define('OFFENSIVE_SYSTEM_VIRUS'		,105);
-
-define('REPARING'					,200);
-define('REPARING_BOTS'				,201);
-define('SPARE_PARTS'				,202);
-define('MOBILE_REPAIR_ROBOT'		,203);
-define('DEFENSIVE_SYSTEM_UPGRADE'	,204);
-define('DEFENSIVE_SYSTEM_VIRUS'		,205);
-
-define('ELECTROMAGNETIC_SHOCK'		,300);
-define('ELECTROMAGNETIC_BLAST'		,301);
-define('OFFENSIVE_ION_SHOCK'		,302);
-define('BATTERY_RECHARGE'			,303);
-define('ENERGETIC_SHIELD'			,304);
-define('DEFENSIVE_ION_SHOCK'		,305);
-
 class AI_Spell extends AI_Game_content
 {
+	const LASER_SHOT =					100;
+	const OFFENSIVE_BOTS =				101;
+	const ENERGY_OVERLOAD =				102;
+	const EXPLOSIVE_DEVICE =			103;
+	const OFFENSIVE_SYSTEM_UPGRADE =	104;
+	const OFFENSIVE_SYSTEM_VIRUS =		105;
+
+	const REPARING =					200;
+	const REPARING_BOTS =				201;
+	const SPARE_PARTS =					202;
+	const MOBILE_REPAIR_ROBOT =			203;
+	const DEFENSIVE_SYSTEM_UPGRADE =	204;
+	const DEFENSIVE_SYSTEM_VIRUS =		205;
+
+	const ELECTROMAGNETIC_SHOCK =		300;
+	const ELECTROMAGNETIC_BLAST =		301;
+	const OFFENSIVE_ION_SHOCK =			302;
+	const BATTERY_RECHARGE =			303;
+	const ENERGETIC_SHIELD =			304;
+	const DEFENSIVE_ION_SHOCK =			305;
+
 	public $id;				// int
 	public $codename;		// String	
 	public $energy;			// int 

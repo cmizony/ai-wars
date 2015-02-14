@@ -32,7 +32,7 @@ class AI_Effect extends AI_Game_content
 			return;
 		}
 
-		if (isset($this->debuffs[ELECTROMAGNETIC_BLAST]))
+		if (isset($this->debuffs[AI_Spell::ELECTROMAGNETIC_BLAST]))
 		{
 			_print("Unable to cast spells when stun");
 			return;
@@ -45,33 +45,33 @@ class AI_Effect extends AI_Game_content
 
 		switch ($this->spell->id)
 		{
-		case LASER_SHOT:
+		case AI_Spell::LASER_SHOT:
 			$this->p_target->life-=$this->eval_power();
 			break;
 
-		case REPARING:
+		case AI_Spell::REPARING:
 			$this->p_target->life+=$this->eval_power();
 			break;
 
-		case ELECTROMAGNETIC_SHOCK:
+		case AI_Spell::ELECTROMAGNETIC_SHOCK:
 			$this->p_target->cast_bar=array();
 			break;
 
-		case ELECTROMAGNETIC_BLAST:
+		case AI_Spell::ELECTROMAGNETIC_BLAST:
 			$this->p_target->cast_bar=array();
 			$this->create_debuff();
 			break;
 
-		case OFFENSIVE_ION_SHOCK:
+		case AI_Spell::OFFENSIVE_ION_SHOCK:
 			array_pop($this->p_target->buffs);
 			break;
 
-		case DEFENSIVE_ION_SHOCK:
+		case AI_Spell::DEFENSIVE_ION_SHOCK:
 			array_pop($this->p_target->debuffs);
 			break;
 
-		case EXPLOSIVE_DEVICE:
-			if (isset($this->p_source->buffs[EXPLOSIVE_DEVICE]))
+		case AI_Spell::EXPLOSIVE_DEVICE:
+			if (isset($this->p_source->buffs[AI_Spell::EXPLOSIVE_DEVICE]))
 				$this->p_source->energy+=$this->spell->power;
 
 			$this->p_target->life-=$this->eval_power();
@@ -79,8 +79,8 @@ class AI_Effect extends AI_Game_content
 			$this->create_buff();
 			break;
 
-		case MOBILE_REPAIR_ROBOT:
-			if (isset($this->p_source->buffs[MOBILE_REPAIR_ROBOT]))
+		case AI_Spell::MOBILE_REPAIR_ROBOT:
+			if (isset($this->p_source->buffs[AI_Spell::MOBILE_REPAIR_ROBOT]))
 				$this->p_source->energy+=$this->spell->power;
 
 			$this->p_target=$this->p_source;
@@ -88,19 +88,19 @@ class AI_Effect extends AI_Game_content
 			$this->create_buff();
 			break;
 
-		case OFFENSIVE_BOTS:
-		case ENERGY_OVERLOAD:
-		case OFFENSIVE_SYSTEM_VIRUS:
-		case DEFENSIVE_SYSTEM_VIRUS:
+		case AI_Spell::OFFENSIVE_BOTS:
+		case AI_Spell::ENERGY_OVERLOAD:
+		case AI_Spell::OFFENSIVE_SYSTEM_VIRUS:
+		case AI_Spell::DEFENSIVE_SYSTEM_VIRUS:
 			$this->create_debuff();
 			break;
 
-		case OFFENSIVE_SYSTEM_UPGRADE:
-		case REPARING_BOTS:
-		case SPARE_PARTS:
-		case BATTERY_RECHARGE:
-		case DEFENSIVE_SYSTEM_UPGRADE:
-		case ENERGETIC_SHIELD:
+		case AI_Spell::OFFENSIVE_SYSTEM_UPGRADE:
+		case AI_Spell::REPARING_BOTS:
+		case AI_Spell::SPARE_PARTS:
+		case AI_Spell::BATTERY_RECHARGE:
+		case AI_Spell::DEFENSIVE_SYSTEM_UPGRADE:
+		case AI_Spell::ENERGETIC_SHIELD:
 			$this->p_target=$this->p_source;
 			$this->create_buff();
 			break;
@@ -136,15 +136,15 @@ class AI_Effect extends AI_Game_content
 	{
 		switch($this->spell->id)
 		{
-		case OFFENSIVE_BOTS:
+		case AI_Spell::OFFENSIVE_BOTS:
 			$this->p_target->life-=$this->eval_target_power();
 			break;
-		case ENERGY_OVERLOAD:
+		case AI_Spell::ENERGY_OVERLOAD:
 			if ($this->duration === 1)
 				$this->p_target->life-=$this->eval_target_power();
 			break;
-		case OFFENSIVE_SYSTEM_VIRUS:
-		case DEFENSIVE_SYSTEM_VIRUS:
+		case AI_Spell::OFFENSIVE_SYSTEM_VIRUS:
+		case AI_Spell::DEFENSIVE_SYSTEM_VIRUS:
 			break;
 		default:
 			throw new Exception("Debuff effect error, Spell ".$this->spell->id." is implement in the current version");
@@ -155,20 +155,20 @@ class AI_Effect extends AI_Game_content
 	{
 		switch($this->spell->id)
 		{
-		case REPARING_BOTS:
+		case AI_Spell::REPARING_BOTS:
 			$this->p_target->life+=$this->eval_target_power()/(float)$this->spell->duration;
 			break;
-		case BATTERY_RECHARGE:
+		case AI_Spell::BATTERY_RECHARGE:
 			$this->p_target->energy+=$this->power;
 			break;
 
-		case SPARE_PARTS:
+		case AI_Spell::SPARE_PARTS:
 			if ($this->duration === 1)
 				$this->p_target->life-=$this->eval_target_power();
 			break;
-		case OFFENSIVE_SYSTEM_UPGRADE:
-		case DEFENSIVE_SYSTEM_UPGRADE:
-		case ENERGETIC_SHIELD:
+		case AI_Spell::OFFENSIVE_SYSTEM_UPGRADE:
+		case AI_Spell::DEFENSIVE_SYSTEM_UPGRADE:
+		case AI_Spell::ENERGETIC_SHIELD:
 			break;
 		default:
 			throw new Exception("Buff effect error, Spell ".$this->spell->id." is implement in the current version");
@@ -197,19 +197,19 @@ class AI_Effect extends AI_Game_content
 		switch ($this->spell->type)
 		{
 		case 'offensive':
-			if (isset($this->p_source->buffs[ENERGETIC_SHIELD]))
+			if (isset($this->p_source->buffs[AI_Spell::ENERGETIC_SHIELD]))
 				return 0;
 
-			if (isset($this->p_source->buffs[OFFENSIVE_SYSTEM_UPGRADE]))
+			if (isset($this->p_source->buffs[AI_Spell::OFFENSIVE_SYSTEM_UPGRADE]))
 			{
-				$spell = $this->p_source->buffs[OFFENSIVE_SYSTEM_UPGRADE];
+				$spell = $this->p_source->buffs[AI_Spell::OFFENSIVE_SYSTEM_UPGRADE];
 				return $this->power*($spell->power/(float)100); 
 			}
 			break;
 		case 'defensive':
-			if (isset($this->p_source->buffs[DEFENSIVE_SYSTEM_VIRUS]))
+			if (isset($this->p_source->buffs[AI_Spell::DEFENSIVE_SYSTEM_VIRUS]))
 			{
-				$spell = $this->p_source->buffs[DEFENSIVE_SYSTEM_VIRUS];
+				$spell = $this->p_source->buffs[AI_Spell::DEFENSIVE_SYSTEM_VIRUS];
 				return $this->power-$this->power*($spell->power/(float)100); 
 			}
 			break;
@@ -222,16 +222,16 @@ class AI_Effect extends AI_Game_content
 		switch ($this->spell->type)
 		{
 		case 'offensive':
-			if (isset($this->p_source->buffs[OFFENSIVE_SYSTEM_VIRUS]))
+			if (isset($this->p_source->buffs[AI_Spell::OFFENSIVE_SYSTEM_VIRUS]))
 			{
-				$spell = $this->p_source->buffs[OFFENSIVE_SYSTEM_VIRUS];
+				$spell = $this->p_source->buffs[AI_Spell::OFFENSIVE_SYSTEM_VIRUS];
 				return $this->power*($spell->power/(float)100); 
 			}
 			break;
 		case 'defensive':
-			if (isset($this->p_source->buffs[DEFENSIVE_SYSTEM_UPGRADE]))
+			if (isset($this->p_source->buffs[AI_Spell::DEFENSIVE_SYSTEM_UPGRADE]))
 			{
-				$spell = $this->p_source->buffs[DEFENSIVE_SYSTEM_UPGRADE];
+				$spell = $this->p_source->buffs[AI_Spell::DEFENSIVE_SYSTEM_UPGRADE];
 				return $this->power-$this->power*($spell->power/(float)100); 
 			}
 			break;
