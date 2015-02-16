@@ -9,7 +9,7 @@ and AI.
 
 ## Details
 Each AI is instantiated as a processus and receive/send actions using
-STDIN/STDOUT. The current list of actions possible is detailed [in this xml file](php\_simulator/application/resources/spell.xml).
+STDIN/STDOUT. The current list of actions possible is detailed [in this xml file](php\_simulator/src/resources/spell.xml).
 
 The simulation is executed on turn bases and each process has 1 second per turn
 to output actions.
