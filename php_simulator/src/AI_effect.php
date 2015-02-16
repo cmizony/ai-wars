@@ -83,8 +83,8 @@ class AI_Effect extends AI_Game_content
 			if (isset($this->p_source->buffs[AI_Spell::MOBILE_REPAIR_ROBOT]))
 				$this->p_source->energy+=$this->spell->power;
 
-			$this->p_target=$this->p_source;
 			$this->p_target->life+=$this->eval_target_power();
+			$this->p_target=$this->p_source;
 			$this->create_buff();
 			break;
 

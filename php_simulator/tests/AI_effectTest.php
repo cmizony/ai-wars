@@ -46,23 +46,46 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 
 		$list_spells = array(
 			AI_wars\AI_Spell::LASER_SHOT => "offensive",
+			AI_wars\AI_Spell::OFFENSIVE_ION_SHOCK => "offensive",
+			AI_wars\AI_Spell::EXPLOSIVE_DEVICE => "offensive",
+			AI_wars\AI_Spell::OFFENSIVE_BOTS => "offensive",
+			AI_wars\AI_Spell::ENERGY_OVERLOAD => "offensive",
+			AI_wars\AI_Spell::OFFENSIVE_SYSTEM_VIRUS => "offensive",
+
 			AI_wars\AI_Spell::REPARING => "defensive",
+			AI_wars\AI_Spell::DEFENSIVE_ION_SHOCK => "defensive",
+			AI_wars\AI_Spell::MOBILE_REPAIR_ROBOT => "defensive",
+			AI_wars\AI_Spell::DEFENSIVE_SYSTEM_VIRUS => "defensive",
+
 			AI_wars\AI_Spell::ELECTROMAGNETIC_SHOCK => "neutral",
+			AI_wars\AI_Spell::ELECTROMAGNETIC_BLAST => "neutral",
 		);
 
 		foreach ($list_spells as $spell_id => $spell_type)
 		{
-			$player_source = $this->getMockBuilder('AI_player')->getMock();
-			$player_source->debuff = array();
-			$player_source->cooldowns = array();
-
-			$player_target = $this->getMockBuilder('AI_player')->getMock();
-			$player_target->life =100;
-			$player_target->debuff = array();
-			$player_target->cooldowns = array();
-			$player_target->cast_bar = array(
+			// For the tests players bars start with 2 effects 
+			$effects = array (
+				$this->getMockBuilder('AI_Effect')->getMock(),
 				$this->getMockBuilder('AI_Effect')->getMock()
 			);
+
+			$player_source = $this->getMockBuilder('AI_player')->getMock();
+			$player_source->life = 100;
+			$player_source->energy = 100;
+			$player_source->debuffs = $effects;
+			$player_source->buffs = $effects;
+			$player_source->cooldowns = $effects;
+			$player_source->cast_bar = $effects;
+			
+			$player_source->cooldowns = $effects;
+
+			$player_target = $this->getMockBuilder('AI_player')->getMock();
+			$player_target->life = 100;
+			$player_target->energy = 100;
+			$player_target->debuffs = $effects;
+			$player_target->buffs = $effects;
+			$player_target->cooldowns = $effects;
+			$player_target->cast_bar = $effects;
 
 			$spell = $this->getMockBuilder('AI_spell')->getMock();
 			$spell->id = $spell_id;
@@ -92,6 +115,42 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 				$this->assertEmpty($player_target->cast_bar);
 				$this->assertArrayHasKey(AI_wars\AI_Spell::ELECTROMAGNETIC_BLAST,$player_target->debuffs);
 				$this->assertEquals(3,$player_target->debuffs[AI_wars\AI_Spell::ELECTROMAGNETIC_BLAST]->duration);
+				break;
+			case AI_wars\AI_Spell::OFFENSIVE_ION_SHOCK:
+				$this->assertEquals(1,count($player_target->buffs));
+				break;
+			case AI_wars\AI_Spell::DEFENSIVE_ION_SHOCK:
+				$this->assertEquals(1,count($player_target->debuffs));
+				break;
+			case AI_wars\AI_Spell::EXPLOSIVE_DEVICE:
+				// Turn 1
+				$this->assertEquals(90,$player_target->life);
+				$this->assertArrayHasKey(AI_wars\AI_Spell::EXPLOSIVE_DEVICE,$player_source->buffs);
+				$this->assertEquals($effect->p_target,$player_source); // Become buff to source
+				// Turn 2
+				$effect->do_cast();
+				$this->assertEquals(110,$player_source->energy);
+				break;
+			case AI_wars\AI_Spell::MOBILE_REPAIR_ROBOT:
+				// Turn 1
+				$this->assertEquals(110,$player_target->life);
+				$this->assertArrayHasKey(AI_wars\AI_Spell::MOBILE_REPAIR_ROBOT,$player_source->buffs);
+				$this->assertEquals($effect->p_target,$player_source); // Become buff to source
+				// Turn 2
+				$effect->do_cast();
+				$this->assertEquals(110,$player_source->energy);
+				break;
+			case AI_wars\AI_Spell::OFFENSIVE_BOTS:
+				$this->assertArrayHasKey(AI_wars\AI_Spell::OFFENSIVE_BOTS,$player_target->debuffs);
+				break;
+			case AI_wars\AI_Spell::ENERGY_OVERLOAD:
+				$this->assertArrayHasKey(AI_wars\AI_Spell::ENERGY_OVERLOAD,$player_target->debuffs);
+				break;
+			case AI_wars\AI_Spell::OFFENSIVE_SYSTEM_VIRUS:
+				$this->assertArrayHasKey(AI_wars\AI_Spell::OFFENSIVE_SYSTEM_VIRUS,$player_target->debuffs);
+				break;
+			case AI_wars\AI_Spell::DEFENSIVE_SYSTEM_VIRUS:
+				$this->assertArrayHasKey(AI_wars\AI_Spell::DEFENSIVE_SYSTEM_VIRUS,$player_target->debuffs);
 				break;
 
 
