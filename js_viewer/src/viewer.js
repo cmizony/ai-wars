@@ -1,7 +1,7 @@
 /****************************/
 /*     Global properties    */
 /****************************/
-if (typeof PLAYER_MAX_LIFE == 'undefined')
+if (typeof PLAYER_MAX_LIFE === 'undefined')
 {
 	const PLAYER_MAX_LIFE=100;
 	const PLAYER_MAX_ENERGY=100;
@@ -23,7 +23,7 @@ function loadGame (json_game,dom_game_viewer,players_info)
 		return false;
 	}
 
-	if (typeof game_viewer == "undefined")
+	if (typeof game_viewer === "undefined")
 		return false;
 
 	// Create panel
@@ -79,7 +79,7 @@ function loadGame (json_game,dom_game_viewer,players_info)
 		var player = players[i];
 
 		// 2 players per row
-		if (i%2 == 0)
+		if (i%2 === 0)
 		{
 			var dom_row = document.createElement('div');
 			dom_row.className = "row";
@@ -118,7 +118,7 @@ function loadGame (json_game,dom_game_viewer,players_info)
 		dom_player_heading.className="panel-heading";
 		dom_icon.className='glyphicon glyphicon-user';
 		dom_name.className="info";
-		dom_name.innerHTML=(typeof players_info == "undefined")?
+		dom_name.innerHTML=(typeof players_info === "undefined")?
 			' Player ' + (i+1):
 			players_info[i].name;
 
@@ -242,7 +242,7 @@ function updateGameState (game_viewer,players)
 			var dom_node = dom_player_body.childNodes.item(j);
 			var class_name = dom_node.getAttribute('class');
 
-			if (class_name.indexOf('life') != -1)
+			if (class_name.indexOf('life') !== -1)
 			{
 				dom_life_bar = dom_node.firstChild;
 				dom_life_bar.innerHTML = player.life+'/'+PLAYER_MAX_LIFE;
@@ -255,19 +255,19 @@ function updateGameState (game_viewer,players)
 				if (player.life > PLAYER_MAX_ENERGY*0.4)
 					dom_life_bar.className='progress-bar progress-bar-success';
 			}
-			else if (class_name.indexOf('energy') != -1)
+			else if (class_name.indexOf('energy') !== -1)
 			{
 				dom_energy_bar = dom_node.firstChild;
 				dom_energy_bar.innerHTML = player.energy+'/'+PLAYER_MAX_ENERGY;
 				dom_energy_bar.setAttribute('style','width: '+(player.energy*100/PLAYER_MAX_ENERGY)+'%');
 			}
-			else if (class_name.indexOf('cast_bar') != -1)
+			else if (class_name.indexOf('cast_bar') !== -1)
 				updateCastbar(game_viewer,dom_node,player.cast_bar);
-			else if (class_name.indexOf('debuffs') != -1)
+			else if (class_name.indexOf('debuffs') !== -1)
 				updateDebuffEffects(game_viewer,dom_node,player.debuffs);
-			else if (class_name.indexOf('buffs') != -1)
+			else if (class_name.indexOf('buffs') !== -1)
 				updateBuffEffects(game_viewer,dom_node,player.buffs);
-			else if (class_name.indexOf('cooldowns') != -1)
+			else if (class_name.indexOf('cooldowns') !== -1)
 				updateCooldownEffects(game_viewer,dom_node,player.cooldowns);
 		}
 	}
