@@ -16,7 +16,7 @@ class AI_game_contentTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(2,$game_content->sorter($element_a,$element_c));
 	}
 
-	public function testSort_by_property ()
+	public function testSortByProperty ()
 	{
 		$game_content = new AI_wars\AI_Game_content();
 
@@ -26,7 +26,7 @@ class AI_game_contentTest extends PHPUnit_Framework_TestCase
 			(object) array ("value" => 0)
 		);
 
-		$output = $game_content->sort_by_property($input,"value");
+		$output = $game_content->sortByProperty($input,"value");
 
 		$previous_object = $output[0];
 		$is_sorted = TRUE;
@@ -41,7 +41,7 @@ class AI_game_contentTest extends PHPUnit_Framework_TestCase
 		$this->assertTrue($is_sorted);
 	}
 
-	public function testSearch_by_property ()
+	public function testSearchByProperty ()
 	{
 		$game_content = new AI_wars\AI_Game_content();
 
@@ -51,7 +51,7 @@ class AI_game_contentTest extends PHPUnit_Framework_TestCase
 			(object) array ("value" => 0)
 		);
 
-		$this->assertEquals($input[1], $game_content->search_by_property($input,"value",10));
-		$this->assertEquals(FALSE, $game_content->search_by_property($input,"value",100));
+		$this->assertEquals($input[1], $game_content->searchByProperty($input,"value",10));
+		$this->assertEquals(FALSE, $game_content->searchByProperty($input,"value",100));
 	}
 }

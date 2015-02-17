@@ -1,5 +1,4 @@
-<?php
-namespace AI_wars;
+<?php namespace AI_wars;
 
 class AI_Spell extends AI_Game_content
 {
@@ -54,7 +53,7 @@ class AI_Spell extends AI_Game_content
 		$this->$codename=$value;
 	}
 
-	private function _replace_gamecode($string)
+	private function _replaceGamecode($string)
 	{
 		$patterns=array(
 			'/\%power/',
@@ -78,12 +77,12 @@ class AI_Spell extends AI_Game_content
 		return "($this->id;$this->duration)";
 	}
 
-	public function get_property($property)
+	public function getProperty($property)
 	{
 		switch ($property)
 		{
 		case 'effect':
-			return $this->_replace_gamecode($this->$property);
+			return $this->_replaceGamecode($this->$property);
 		default:
 			return $this->$property;
 		}
@@ -91,10 +90,10 @@ class AI_Spell extends AI_Game_content
 
 	public function __get($property) 
 	{
-		return $this->get_property($property);
+		return $this->getProperty($property);
 	}
 
-	public function to_json()
+	public function toJson()
 	{
 		$json="
 			{
@@ -106,13 +105,13 @@ class AI_Spell extends AI_Game_content
 			\"power\":			$this->power,
 			\"duration\":		$this->duration,
 			\"type\":			\"$this->type\",
-			\"effect\":			\"".$this->get_property('effect')."\"
+			\"effect\":			\"".$this->getProperty('effect')."\"
 			}";
 
 		return $json;
 	}
 
-	public function is_valid($player)
+	public function isValid($player)
 	{
 		// Test energy
 		if ($player->energy < $this->energy)

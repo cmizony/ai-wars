@@ -1,5 +1,5 @@
-<?php
-namespace AI_wars;
+<?php namespace AI_wars;
+
 /**
  * AI_player.php file
  *
@@ -65,7 +65,7 @@ class AI_player extends AI_Game_content
 	 *
 	 * @return string json 
 	 */
-	public function to_json()
+	public function toJson()
 	{
 		$json="{
 		\"id\"		:$this->id,
@@ -76,25 +76,25 @@ class AI_player extends AI_Game_content
 
 		// Cast bar
 		foreach($this->cast_bar as $cast)
-			$json.=$cast->to_json().',';
+			$json.=$cast->toJson().',';
 		$json=rtrim($json,',');
 
 		// Buffs
 		$json.="], \"buffs\": [";
 		foreach($this->buffs as $buff)
-			$json.=$buff->to_json().',';
+			$json.=$buff->toJson().',';
 		$json=rtrim($json,',');
 
 		// Cooldowns
 		$json.="], \"cooldowns\": [";
 		foreach($this->cooldowns as $cooldown)
-			$json.=$cooldown->to_json().',';
+			$json.=$cooldown->toJson().',';
 		$json=rtrim($json,',');
 
 		// Cooldowns
 		$json.="], \"debuffs\": [";
 		foreach($this->debuffs as $debuff)
-			$json.=$debuff->to_json().',';
+			$json.=$debuff->toJson().',';
 		$json=rtrim($json,',');
 
 		$json.=']}';

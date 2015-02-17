@@ -1,5 +1,4 @@
-<?php
-namespace AI_wars;
+<?php namespace AI_wars;
 
 define('REGEX_TURN_NUMBER','/^T [0-9]*$/');
 define('SUB_REGEX_EFFECT','(\([0-9]*;[0-9]*\) ?)');
@@ -43,7 +42,7 @@ class AI_Game
 		$this->my_id=$this->my_team=$this->max_turn=$this->turn_time=$this->load_time=0;
 	}
 
-	public function receive_turn_info ()
+	public function receiveTurnInfo ()
 	{
 		$lines=array();
 
@@ -62,7 +61,7 @@ class AI_Game
 		return $lines;
 	}
 
-	public function parse_game_state()
+	public function parseGameState()
 	{
 		foreach($this->server_infos as $info)
 		{
@@ -103,33 +102,33 @@ class AI_Game
 				if ($B_pos)
 				{
 					unset($spells_pos['B']);
-					$string=substr($info,$B_pos,$this->_pos_min($spells_pos,strlen($info))-$B_pos);
-					$player->buffs=$this->_extract_effect($string);
+					$string=substr($info,$B_pos,$this->_posMin($spells_pos,strlen($info))-$B_pos);
+					$player->buffs=$this->_extractEffect($string);
 				}
 				if ($D_pos)
 				{
 					unset($spells_pos['D']);
-					$string=substr($info,$D_pos,$this->_pos_min($spells_pos,strlen($info))-$D_pos);
-					$player->debuffs=$this->_extract_effect($string);
+					$string=substr($info,$D_pos,$this->_posMin($spells_pos,strlen($info))-$D_pos);
+					$player->debuffs=$this->_extractEffect($string);
 				}
 				if ($C_pos)
 				{
 					unset($spells_pos['C']);
-					$string=substr($info,$C_pos,$this->_pos_min($spells_pos,strlen($info))-$C_pos);
-					$player->cast_bar=$this->_extract_effect($string);
+					$string=substr($info,$C_pos,$this->_posMin($spells_pos,strlen($info))-$C_pos);
+					$player->cast_bar=$this->_extractEffect($string);
 				}
 				if ($CD_pos)
 				{
 					unset($spells_pos['CD']);
-					$string=substr($info,$CD_pos,$this->_pos_min($spells_pos,strlen($info))-$CD_pos);
-					$player->cooldowns=$this->_extract_effect($string);
+					$string=substr($info,$CD_pos,$this->_posMin($spells_pos,strlen($info))-$CD_pos);
+					$player->cooldowns=$this->_extractEffect($string);
 				}
 
 			}
 		}
 	}
 
-	private function _pos_min ($array,$max)
+	private function _posMin ($array,$max)
 	{
 		$min=$max;
 		foreach($array as $value)
@@ -138,7 +137,7 @@ class AI_Game
 		return $min;
 	}
 
-	private function _extract_effect($string)
+	private function _extractEffect($string)
 	{
 		$extracted_effects=array();
 		$regex_effects=array();
@@ -156,7 +155,7 @@ class AI_Game
 		return $extracted_effects;
 	}
 
-	public function parse_game_setup()
+	public function parseGameSetup()
 	{
 		foreach($this->server_infos as $info)
 		{
@@ -193,17 +192,17 @@ class AI_Game
 		}
 	}
 
-	public function finish_turn()
+	public function finishTurn()
 	{
 		echo "go\n";
 	}
 
-	public function print_debug ($string)
+	public function printDebug ($string)
 	{
 		fwrite($this->stderr,"$string\n");
 	}
 
-	public function send_spell($source_id,$spell_id,$target_id)
+	public function sendSpell($source_id,$spell_id,$target_id)
 	{
 		echo "C $source_id $spell_id $target_id\n";
 	}

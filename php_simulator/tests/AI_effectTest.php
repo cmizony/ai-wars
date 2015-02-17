@@ -27,7 +27,7 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 	 * @depends testCastEffects
 	 *
 	 */
-	public function testDo_cast()
+	public function testDoCast()
 	{
 		$player = $this->getMockBuilder('AI_player')->getMock();
 		$player->debuff = array();
@@ -38,7 +38,7 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 		$effect->p_target = $player;
 
 		$this->setExpectedException('Exception');
-		$effect->do_cast();
+		$effect->doCast();
 	}
 
 	public function testCastEffects ()
@@ -98,7 +98,7 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 			$effect->p_source = $player_source;
 			$effect->p_target = $player_target;
 
-			$effect->do_cast();
+			$effect->doCast();
 
 			switch ($spell_id)
 			{
@@ -128,7 +128,7 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 				$this->assertArrayHasKey(AI_wars\AI_Spell::EXPLOSIVE_DEVICE,$player_source->buffs);
 				$this->assertEquals($effect->p_target,$player_source); // Become buff to source
 				// Turn 2
-				$effect->do_cast();
+				$effect->doCast();
 				$this->assertEquals(110,$player_source->energy);
 				break;
 			case AI_wars\AI_Spell::MOBILE_REPAIR_ROBOT:
@@ -137,7 +137,7 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 				$this->assertArrayHasKey(AI_wars\AI_Spell::MOBILE_REPAIR_ROBOT,$player_source->buffs);
 				$this->assertEquals($effect->p_target,$player_source); // Become buff to source
 				// Turn 2
-				$effect->do_cast();
+				$effect->doCast();
 				$this->assertEquals(110,$player_source->energy);
 				break;
 			case AI_wars\AI_Spell::OFFENSIVE_BOTS:
@@ -158,7 +158,7 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 		}
 	}
 
-	public function testDo_buff()
+	public function testDoBuff()
 	{
 		$player = $this->getMockBuilder('AI_player')->getMock();
 		$player->debuff = array();
@@ -169,10 +169,10 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 		$effect->p_target = $player;
 
 		$this->setExpectedException('Exception');
-		$effect->do_buff();
+		$effect->doBuff();
 	}
 
-	public function testDo_debuff()
+	public function testDoDebuff()
 	{
 		$player = $this->getMockBuilder('AI_player')->getMock();
 		$player->debuff = array();
@@ -183,7 +183,7 @@ class AI_effectTest extends PHPUnit_Framework_TestCase
 		$effect->p_target = $player;
 
 		$this->setExpectedException('Exception');
-		$effect->do_debuff();
+		$effect->doDebuff();
 	}
 
 	private function getInvalidSpell ()

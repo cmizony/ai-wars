@@ -1,5 +1,4 @@
-<?php
-namespace AI_wars;
+<?php namespace AI_wars;
 
 class AI_Game_content
 {
@@ -16,7 +15,7 @@ class AI_Game_content
 		return ($return==0?TRUE:$return); //equiprobability for random set
 	}
 
-	public static function sort_by_property(&$array,$property)
+	public static function sortByProperty(&$array,$property)
 	{
 		if(empty($array))
 			return;
@@ -24,7 +23,7 @@ class AI_Game_content
 		usort($array,array( __CLASS__,'sorter'));
 	}
 
-	public static function search_by_property(&$array,$property,$value)
+	public static function searchByProperty(&$array,$property,$value)
 	{
 		self::$find_key=$property;
 		foreach($array as $player)

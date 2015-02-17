@@ -17,17 +17,17 @@ class AI_playerTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(PLAYER_MAX_ENERGY,$player->energy);
 	}
 
-	public function testTo_json ()
+	public function testToJson ()
 	{
 		$mock_json = array("duration" => 5, "power" => 10);
 		$mock_effects_json = array($mock_json,$mock_json);
 
 		$effect = $this->getMockBuilder('AI_effect')
-			->setMethods(array('to_json'))
+			->setMethods(array('toJson'))
 			->getMock();
 
 		$effect->expects($this->any())
-			->method('to_json')
+			->method('toJson')
 			->will($this->returnValue(json_encode($mock_json)));
 
 		$player = new AI_wars\AI_player ();
@@ -40,7 +40,7 @@ class AI_playerTest extends PHPUnit_Framework_TestCase
 		$player->debuffs = array($effect,$effect);
 		$player->cooldowns = array($effect,$effect);
 
-		$json_result = json_decode($player->to_json(),TRUE);
+		$json_result = json_decode($player->toJson(),TRUE);
 
 		$this->assertTrue((boolean) $json_result);
 		$this->assertEquals(1,$json_result['id']);

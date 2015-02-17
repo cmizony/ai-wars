@@ -1,5 +1,5 @@
-<?php
-namespace AI_wars;
+<?php namespace AI_wars;
+
 use Exception;
 
 define ('VERSION','0.1');
@@ -43,7 +43,7 @@ class AI_Game_simulator
 		$this->game_history->reset();
 	}
 
-	private function _load_config($config)
+	private function _loadConfig($config)
 	{
 		$this->simulator_config=array_shift($config);
 
@@ -59,18 +59,18 @@ class AI_Game_simulator
 
 	public function run($config)
 	{
-		$this->_load_config($config);
+		$this->_loadConfig($config);
 		_print("Game engine simulator version ".VERSION);
 
 		$this->_initialize();
-		$this->_lauch_bots();
+		$this->_launchBots();
 		
-		$this->_play_game();
+		$this->_playGame();
 	}
 
 	public function free()
 	{
-		$this->_free_players();
+		$this->_freePlayers();
 	}
 
 	public function render($type)
@@ -78,10 +78,10 @@ class AI_Game_simulator
 		switch ($type)
 		{
 		case "txt":
-			return $this->_render_txt();
+			return $this->_renderTxt();
 			break;
 		case "json":
-			return $this->_render_json();
+			return $this->_renderJson();
 			break;
 		default:
 			throw new Exception("Error, Simulator doesn't support \"$type\" format render");
@@ -89,7 +89,7 @@ class AI_Game_simulator
 		}
 	}
 
-	public function get_player_alives ()
+	public function getPlayerAlives ()
 	{
 		$alives = array();
 
@@ -99,18 +99,18 @@ class AI_Game_simulator
 		return $alives;
 	}
 
-	public function get_turn ()
+	public function getTurn ()
 	{
 		return $this->turn;
 	}
 		
-	private function _free_players()
+	private function _freePlayers()
 	{
 		foreach ($this->players as $player)
 			$player->free();
 	}
 
-	private function _lauch_bots()
+	private function _launchBots()
 	{
 		foreach ($this->bots_config as $player_ai)
 		{
@@ -158,7 +158,7 @@ class AI_Game_simulator
 			$process = proc_open($cmd, $descriptors, $pipes, NULL, NULL);
 
 			if (!is_resource($process))
-				throw new Exception("Error, unable to lauch bot \"".$player_ai['mainfile']."\"");
+				throw new Exception("Error, unable to launch bot \"".$player_ai['mainfile']."\"");
 
 			$player->stdin=$pipes[0];
 			$player->stdout=$pipes[1];
@@ -182,32 +182,32 @@ class AI_Game_simulator
 		_print(count($this->players)." bots launched");
 	}
 
-	private function _bots_setup()
+	private function _botsSetup()
 	{
 		_print("Start bots setup phase (max ".$this->game_config['loadtime']."ms)");
 		foreach($this->players as $player)
 		{
-			$player->send_text(
+			$player->sendtext(
 				"id $player->id\nteam $player->team\nturns ".$this->game_config['turns']."\nturntime ".$this->game_config['turntime']."\nloadtime ".$this->game_config['loadtime']."\ngo\n");
 		}
 
 		//Wait for go orders
-		$this->_receive_orders($this->game_config['loadtime']);
+		$this->_receiveOrders($this->game_config['loadtime']);
 
 		foreach($this->players as $key=>$player)
 		{
-			$player->flush_orders();
+			$player->flushOrders();
 			if (!$player->ready)
 			{
 				$player->free();
 				unset($this->players[$key]);
 			}
-			$this->game_history->add_player($this->turn,$player);
+			$this->game_history->addPlayer($this->turn,$player);
 		}
 		_print(count($this->players)." bot(s) succed setup phase");
 	}
 
-	private function _is_game_finish()
+	private function _isGameFinish()
 	{
 		$end=((count($this->players) == 0) OR
 			($this->turn > $this->game_config['turns']));
@@ -228,43 +228,43 @@ class AI_Game_simulator
 		return $end;	
 	}
 
-	private function _play_game()
+	private function _playGame()
 	{
 		// Turn 0
-		$this->_bots_setup();
+		$this->_botsSetup();
 		$this->turn++;
 		_print("Start game (max ".$this->game_config['turns']." turns)");
 
 		// Turn n in [1;max_turn]
-		while(!$this->_is_game_finish())
+		while(!$this->_isGameFinish())
 		{
 			_print("Turn $this->turn (".count($this->players)." players)");
-			$this->_send_game_state();
+			$this->_sendGameState();
 
-			$this->_receive_orders($this->game_config['turntime']);
-			$this->_update_game();
+			$this->_receiveOrders($this->game_config['turntime']);
+			$this->_updateGame();
 
 			$this->turn++;
 		}
 	}
 
-	private function _send_game_state()
+	private function _sendGameState()
 	{
 		foreach($this->players as $player_order)
 		{
-			$player_order->send_text("T $this->turn\n");
+			$player_order->sendText("T $this->turn\n");
 			foreach($this->players as $player)
-				$player_order->send_text($player."\n");
+				$player_order->sendText($player."\n");
 		}
 
 		//send all go at the same time
 		foreach($this->players as $player) 
-			$player->send_text("go\n");
+			$player->sendText("go\n");
 	}
 
 
 
-	private function _receive_orders($max_time)
+	private function _receiveOrders($max_time)
 	{
 		foreach($this->players as $player)
 			$player->ready=FALSE;
@@ -281,7 +281,7 @@ class AI_Game_simulator
 				if ($player->ready)
 					continue;
 
-				$line=$player->recover_line();
+				$line=$player->recoverLine();
 				$player->ready=($line==="go");
 				$players_ready&=$player->ready;
 			}
@@ -289,10 +289,10 @@ class AI_Game_simulator
 			($time_elapsed<((int)$max_time)));
 
 		// First come first served ...
-		AI_player::sort_by_property($this->players,'time_last_order');
+		AI_player::sortByProperty($this->players,'time_last_order');
 	}
 
-	private function _update_game()
+	private function _updateGame()
 	{
 		foreach($this->players as $key=>$player)
 		{
@@ -318,7 +318,7 @@ class AI_Game_simulator
 
 				if($p_source_id != $player->id)
 					_print("Spell error from player $player->name, source id \"$p_source_id\" invalid)");	
-				$p_target=AI_player::search_by_property($this->players,'id',$p_target_id);
+				$p_target=AI_player::searchByProperty($this->players,'id',$p_target_id);
 				if (!$p_target)
 				{
 					_print("Spell error from player $player->name, target not found (id $p_target_id)");	
@@ -326,40 +326,40 @@ class AI_Game_simulator
 				}
 
 				// Cast succed & save into game history
-				$spell=$this->spells_validator->valid_spell($player,$spell_id);
+				$spell=$this->spells_validator->validSpell($player,$spell_id);
 				if ($spell)
 				{
-					$effect=$player->cast_spell($spell,$p_target);
-					$this->game_history->add_spell($this->turn,$effect);
+					$effect=$player->castSpell($spell,$p_target);
+					$this->game_history->addSpell($this->turn,$effect);
 				}
 			}
-			$player->flush_orders();
+			$player->flushOrders();
 
 			// Update order effects
-			AI_Effect::sort_by_property($this->cast_bar,'date');
-			$player->update_cast_bar();
+			AI_Effect::sortByProperty($this->cast_bar,'date');
+			$player->updateCastBar();
 		}
 
 		// Apply effects to player
 		foreach($this->players as $player)
 		{
-			AI_Effect::sort_by_property($this->buffs,'date');
-			$player->update_buffs();
+			AI_Effect::sortByProperty($this->buffs,'date');
+			$player->updateBuffs();
 
-			AI_Effect::sort_by_property($this->debuffs,'date');
-			$player->update_debuffs();
+			AI_Effect::sortByProperty($this->debuffs,'date');
+			$player->updateDebuffs();
 
 			// Update cooldowns and effects duration
-			AI_Effect::sort_by_property($this->cooldowns,'date'); 
-			$player->update_cooldowns();
-			$player->regain_energy();
+			AI_Effect::sortByProperty($this->cooldowns,'date'); 
+			$player->updateCooldowns();
+			$player->regainEnergy();
 
 		}
 
 		//Remove dead players
 		foreach($this->players as $key=>$player)
 		{
-			$this->game_history->add_player($this->turn,$player);
+			$this->game_history->addPlayer($this->turn,$player);
 			_print("  ".$player);
 			if ($player->life <= 0)
 			{
@@ -369,20 +369,20 @@ class AI_Game_simulator
 		}
 	}
 
-	private function _render_txt()
+	private function _renderTxt()
 	{
 		$txt='';
 		for($i=0;$i < $this->turn;$i++)
 		{
 			$txt.="turn $i\n";
 
-			$spells=$this->game_history->get_spells($i);
+			$spells=$this->game_history->getSpells($i);
 			if ($spells)
 				foreach($spells as $spell)
 					$txt.=(string)$spell."\n";
 
-			$players=$this->game_history->get_players($i);
-			AI_player::sort_by_property($players,'id');
+			$players=$this->game_history->getPlayers($i);
+			AI_player::sortByProperty($players,'id');
 			if ($players)
 				foreach($players as $player)
 					$txt.=(string)$player."\n";
@@ -391,14 +391,14 @@ class AI_Game_simulator
 		return $txt;
 	}
 
-	private function _render_json()
+	private function _renderJson()
 	{
 		$json="
 		{\"game\":
 			{
 			\"version\": ".VERSION.",
 			\"static\":";	
-		$json.=$this->spells_validator->to_json();
+		$json.=$this->spells_validator->toJson();
 		$json .=",
 			\"turns\":
 			[";
@@ -411,12 +411,12 @@ class AI_Game_simulator
 				\"players\": 
 					[";
 
-			$players=$this->game_history->get_players($i);
-			AI_player::sort_by_property($players,'id');
+			$players=$this->game_history->getPlayers($i);
+			AI_player::sortByProperty($players,'id');
 			if ($players)
 				foreach($players as $player)
 				{
-					$json.=$player->to_json();
+					$json.=$player->toJson();
 					$json.=',';
 				}
 			$json=rtrim($json,',');

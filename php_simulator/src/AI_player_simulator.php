@@ -1,5 +1,5 @@
-<?php
-namespace AI_wars;
+<?php namespace AI_wars;
+
 use Exception;
 
 define('PLAYER_TURN_ENERGY',100);
@@ -33,7 +33,7 @@ class AI_Player_simulator extends AI_player
 		$this->time_last_order=microtime(TRUE)*1000;
 	}
 
-	public function send_text($string)
+	public function sendText($string)
 	{
 		//TODO user a buffer limit unix kernel 16*4KB
 		if (strlen($string) > 4096)
@@ -41,7 +41,7 @@ class AI_Player_simulator extends AI_player
 		fwrite($this->stdin,$string);
 	}
 
-	private function _get_line()
+	private function _getLine()
 	{
 		$line=trim(fgets($this->stdout));
 		if ($line AND !empty($line))
@@ -49,15 +49,15 @@ class AI_Player_simulator extends AI_player
 		return $line;
 	}
 
-	public function recover_line()
+	public function recoverLine()
 	{
-		$line=$this->_get_line();
+		$line=$this->_getLine();
 		if ($line AND !empty($line))
 			array_push($this->orders,$line);
 		return $line;
 	}
 
-	public function flush_orders ()
+	public function flushOrders ()
 	{
 		$this->orders=array();
 	}
@@ -78,7 +78,7 @@ class AI_Player_simulator extends AI_player
 		return posix_kill($this->pid,SIGKILL);
 	}
 
-	public function cast_spell($spell,$p_target)
+	public function castSpell($spell,$p_target)
 	{
 		// Apply energy
 		$this->energy-=$spell->energy;
@@ -92,14 +92,14 @@ class AI_Player_simulator extends AI_player
 		return $effect;
 	}
 
-	public function regain_energy()
+	public function regainEnergy()
 	{
 		$this->energy += PLAYER_TURN_ENERGY;
 		if($this->energy > PLAYER_MAX_ENERGY)
 			$this->energy=PLAYER_MAX_ENERGY;
 	}
 
-	public function update_cooldowns()
+	public function updateCooldowns()
 	{
 		foreach($this->cooldowns as $key=>&$effect)
 		{
@@ -110,13 +110,13 @@ class AI_Player_simulator extends AI_player
 		}
 	}
 
-	public function update_cast_bar()
+	public function updateCastBar()
 	{
 		foreach($this->cast_bar as $key=>&$effect)
 		{
 			if($effect->duration <= 1)
 			{
-				$effect->do_cast();
+				$effect->doCast();
 				unset($this->cast_bar[$key]);
 			}
 
@@ -126,13 +126,13 @@ class AI_Player_simulator extends AI_player
 		}
 	}
 
-	public function update_buffs()
+	public function updateBuffs()
 	{
 		foreach($this->buffs as $key=>&$effect)
 		{
 			if($effect->duration > 0)
 			{
-				$effect->do_buff();
+				$effect->doBuff();
 				$effect->duration--;
 			}
 			if($effect->duration <= 0)
@@ -140,13 +140,13 @@ class AI_Player_simulator extends AI_player
 		}
 	}
 
-	public function update_debuffs()
+	public function updateDebuffs()
 	{
 		foreach($this->debuffs as $key=>&$effect)
 		{
 			if($effect->duration > 0)
 			{
-				$effect->do_debuff();
+				$effect->doDebuff();
 				$effect->duration--;
 			}
 			if($effect->duration <= 0)

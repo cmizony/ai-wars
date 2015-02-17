@@ -1,5 +1,4 @@
-<?php
-namespace AI_wars;
+<?php namespace AI_wars;
 
 /* Supposition on turn numbers :
  * Linear continuous distribution in N [0,n]
@@ -23,41 +22,41 @@ class AI_Game_history
 		$this->players=array();
 	}
 
-	public function add_spell($turn,$spell)
+	public function addSpell($turn,$spell)
 	{
 		if(!isset($this->spells[$turn]))
 			$this->spells[$turn]=array();
 		array_push($this->spells[$turn],$spell);
 	}
 
-	public function add_message($turn,$message)
+	public function addMessage($turn,$message)
 	{
 		if(!isset($this->messages[$turn]))
 			$this->messages[$turn]=array();
 		array_push($this->messages[$turn],$message);
 	}
 
-	public function add_player($turn,$player)
+	public function addPlayer($turn,$player)
 	{
 		if(!isset($this->players[$turn]))
 			$this->players[$turn]=array();
 		array_push($this->players[$turn],clone($player));
 	}
 
-	public function get_messages($turn)
+	public function getMessages($turn)
 	{
 		if (!isset($this->messages[$turn]))
 			return FALSE;
 		return $this->messages[$turn];
 	}
-	public function get_players($turn)
+	public function getPlayers($turn)
 	{
 		if (!isset($this->players[$turn]))
 			return FALSE;
 		return $this->players[$turn];
 	}
 
-	public function get_spells($turn)
+	public function getSpells($turn)
 	{
 		if (!isset($this->spells[$turn]))
 			return FALSE;

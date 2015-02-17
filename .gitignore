@@ -2,3 +2,4 @@ php_simulator/doc/*
 js_viewer/bower_components/*
 js_viewer/node_modules/*
 php_simulator/vendor/*
+php_simulator/build/*

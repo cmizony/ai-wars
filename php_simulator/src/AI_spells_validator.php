@@ -1,5 +1,5 @@
-<?php
-namespace AI_wars;
+<?php namespace AI_wars;
+
 use Exception;
 use DOMDocument;
 
@@ -13,10 +13,10 @@ class AI_Spells_validator
 	public function initialize($config)
 	{
 		$this->spells=array();
-		$this->_load_xml($config);
+		$this->_loadXml($config);
 	}
 
-	private function _load_xml($config)
+	private function _loadXml($config)
 	{
 		$resources_folder=$config['resources_folder'];
 
@@ -54,15 +54,15 @@ class AI_Spells_validator
 	}
 
 
-	public function valid_spell($player,$spell_id)
+	public function validSpell($player,$spell_id)
 	{
-		$spell=AI_Spell::search_by_property($this->spells,'id',$spell_id);
+		$spell=AI_Spell::searchByProperty($this->spells,'id',$spell_id);
 		if (!$spell)	
 		{
 			_print("Spell error from player $player->name not found (id $spell_id)");
 			return FALSE;
 		}
-		if(!$spell->is_valid($player))
+		if(!$spell->isValid($player))
 		{
 			_print("Spell id \"$spell_id\" from player $player->name failed cast");
 			return FALSE;
@@ -70,7 +70,7 @@ class AI_Spells_validator
 		return $spell;
 	}
 
-	public function to_json()
+	public function toJson()
 	{
 		$json="
 		{ \"spells\":
@@ -78,7 +78,7 @@ class AI_Spells_validator
 			
 		foreach($this->spells as $spell)
 		{
-			$json.= $spell->to_json();
+			$json.= $spell->toJson();
 			$json.=',';
 		}
 		$json=rtrim($json,',');
