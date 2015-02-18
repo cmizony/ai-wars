@@ -1,9 +1,12 @@
 <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="src/viewer.css" />
 
-<script type="text/javascript" src="src/viewer.js"></script>
-<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
-<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="src/viewer.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/webcomponentsjs/webcomponents.js"></script>
+
+<link rel="import" href="ai_viewer.html">
 
 
 <div class="container">
@@ -18,6 +21,8 @@
 			</div>
 
 			<hr>
+
+			<ai-viewer></ai-viewer>
 
 			<!-- This is the div id update by the js viewer library -->
 			<div class="game-viewer" id="game-viewer">
