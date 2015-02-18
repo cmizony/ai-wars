@@ -1,8 +1,10 @@
+[![Dependency Status](https://www.versioneye.com/user/projects/54e2bcf38bd69f07ae00000e/badge.svg?style=flat)](https://www.versioneye.com/user/projects/54e2bcf38bd69f07ae00000e)
+
 ## AI SIMULATOR
 
-Simulate fight between 2 Artificial Intelligence
+Simulate fight between Artificial Intelligence
 
-## CONTENT
+# CONTENT
 
 * **application/** Php class to simulate AIs
 * **application/resources** List of spells that are used for the simulator 
@@ -10,7 +12,7 @@ Simulate fight between 2 Artificial Intelligence
 * **sample_bots** Contains 2 simple bots to test the simulator
 * **main.php** Bootstrap code to start simulator
 
-## USAGE
+# USAGE
 
 Edit the **config.ini** and specifiy the 2 AIs you want to be executed and
 others options like the number of turns max for the game.

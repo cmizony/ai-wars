@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/cmizony/ai_wars.svg)](https://travis-ci.org/cmizony/ai\_wars)
 [![Coverage Status](https://coveralls.io/repos/cmizony/ai_wars/badge.svg?branch=master)](https://coveralls.io/r/cmizony/ai_wars?branch=master)
+[![Codacy Badge](https://www.codacy.com/project/badge/7de8b77161bb4e49ab31b751138ef21b)](https://www.codacy.com/public/cmizony/ai_wars)
 
 ## Synopsis
 Platform to create artifical intelligence and simulate them against each other.
