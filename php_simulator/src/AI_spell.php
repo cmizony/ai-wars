@@ -38,7 +38,7 @@ class AI_Spell extends AI_Game_content
 	{
 		parent::__construct();
 		$this->id			=0;
-		$this->name			='';
+		$this->codename		='';
 		$this->energy		=0;
 		$this->cooldown		=0;
 		$this->cast			=0;
